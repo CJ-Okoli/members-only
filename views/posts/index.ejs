@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Members Only Project</h1>
+        <p>Hello</p>
+
+        <div class="container">
+            <h1 class="mb-4">Posts</h1>
+            <a href="/posts/new" class="btn btn-success">New Post</a>
+
+            <% posts.forEach(posts => { %>
+                <div class="card mt-4">
+                    <div class="card-body">
+                        <h4 class="card-title "><%= posts.title %></h4>
+                        <div class="d-inline card-subtitle text-muted mb-2">
+                            <%= posts.createdAt.toUTCString() %> 
+                        </div>
+                        <div class="card-text"><%= posts.description %> </div>
+                        <div class="card-text"><%= posts.markdown %> </div>
+                        <form action="/posts/<%= posts.id %>?_method=DELETE" method="POST">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            <% }) %> 
+        </div>
+
+        <a href="/log-in" class="btn btn-outline-primary mt-4">Log-in</a>
+    </div>
+</body>
+</html>
