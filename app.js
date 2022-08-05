@@ -17,8 +17,9 @@ const methodOverride = require('method-override');
 const bodyParser = require('body-parser');
 const expressLayouts = require('express-ejs-layouts');
 
-//mongoose connection
-const mongoDB = "mongodb+srv://members:members@cluster0.ohosgom.mongodb.net/?retryWrites=true&w=majority";
+// Set up mongoose connection
+var dev_db_url = 'mongodb+srv://members:members@cluster0.ohosgom.mongodb.net/?retryWrites=true&w=majority'
+var mongoDB = process.env.MONGODB_URI || dev_db_url;
 mongoose.connect(mongoDB, { useUnifiedTopology: true, useNewUrlParser: true });
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "mongo connection error"));
